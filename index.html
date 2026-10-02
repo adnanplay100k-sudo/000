@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>استوديو التصوير والطباعة</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+    }
+    .main-container {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    .header-box {
+      text-align: center;
+      background: #ffffff;
+      padding: 30px 20px;
+      border-radius: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .header-box h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .header-box p {
+      font-size: 14px;
+      color: #64748b;
+    }
+    .categories-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .category-link {
+      text-decoration: none;
+      display: block;
+    }
+    .category-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+    .category-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 6px;
+      height: 100%;
+      background: #0284c7;
+    }
+    .category-card:active {
+      transform: scale(0.98);
+      background: #f8fafc;
+    }
+    .card-content h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    .card-content p {
+      font-size: 13px;
+      color: #64748b;
+    }
+    .arrow-badge {
+      width: 38px;
+      height: 38px;
+      background: #e0f2fe;
+      color: #0284c7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    
+    <div class="header-box">
+      <h1>استوديو التصوير والطباعة ✨</h1>
+      <p>أهلاً بك! اختر القسم لتصفح الخيارات المتاحة والطلب</p>
+    </div>
+
+    <div class="categories-list">
+      <!-- الرابط ينقل مباشرة إلى صفحة الهدايا -->
+      <a href="gifts.html" class="category-link">
+        <div class="category-card">
+          <div class="card-content">
+            <h2>قسم الهدايا والإهداءات 🎁</h2>
+            <p>أكواب حرارية، كنزات مخصصة، كفرات موبايل</p>
+          </div>
+          <div class="arrow-badge">←</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>

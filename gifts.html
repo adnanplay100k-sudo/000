@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قسم الهدايا والإهداءات</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { 
+      background-color: #f1f5f9; 
+      margin: 0; 
+      padding: 25px 15px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0284c7;
+      background: #ffffff;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13.5px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 20px;
+      transition: all 0.2s ease;
+    }
+    .back-btn:hover {
+      background: #f0f9ff;
+      border-color: #0284c7;
+    }
+
+    .category-header {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 22px 26px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    .category-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 6px;
+      height: 100%;
+      background: #0284c7;
+    }
+    .category-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0 0 6px;
+    }
+    .category-subtitle {
+      font-size: 13.5px;
+      color: #64748b;
+    }
+
+    .products-grid {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+      max-width: 380px;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .product-card:hover { 
+      transform: translateY(-6px); 
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12); 
+    }
+    
+    .image-container { 
+      position: relative; 
+      width: 100%; 
+      height: 320px; 
+      background: #fafafa; 
+      overflow: hidden; 
+    }
+    .image-container img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+    }
+    
+    .badge-quality { 
+      position: absolute; 
+      top: 15px; 
+      right: 15px; 
+      background: rgba(15, 23, 42, 0.85); 
+      color: #fff; 
+      padding: 6px 14px; 
+      border-radius: 30px; 
+      font-size: 12px; 
+      font-weight: 600; 
+      backdrop-filter: blur(6px); 
+    }
+    .badge-pickup { 
+      position: absolute; 
+      bottom: 15px; 
+      right: 15px; 
+      background: #0f172a; 
+      color: #38bdf8; 
+      padding: 6px 14px; 
+      border-radius: 20px; 
+      font-size: 11.5px; 
+      font-weight: 700; 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+    }
+
+    .content { padding: 22px; }
+    .title { font-size: 21px; font-weight: 800; color: #0f172a; margin: 0 0 10px; }
+    .description { font-size: 13.5px; color: #475569; line-height: 1.6; margin: 0 0 16px; }
+
+    .features-list {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .feature-item { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      font-size: 12.5px; 
+      color: #334155; 
+      font-weight: 600; 
+    }
+    .feature-item span { color: #0284c7; font-size: 14px; }
+
+    .pickup-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      border: 1px dashed #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+    }
+    .pickup-icon {
+      background: #e0f2fe;
+      color: #0284c7;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .pickup-text { font-size: 12px; color: #334155; line-height: 1.4; }
+    .pickup-text strong { color: #0f172a; display: block; font-size: 12.5px; }
+
+    .options-title { font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 10px; }
+    
+    .options-grid-1 { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
+    .options-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    .options-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+    
+    .option-card {
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #ffffff;
+    }
+    .option-card.active { border-color: #0284c7; background: #f0f9ff; }
+    .option-name { font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .option-price { font-size: 16px; font-weight: 800; color: #0284c7; }
+    .option-sub { font-size: 11px; color: #94a3b8; }
+
+    .buttons-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .order-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+    .btn-whatsapp:hover { background: #1eb956; }
+
+    .btn-telegram {
+      background: #229ED9;
+      box-shadow: 0 4px 12px rgba(34, 158, 217, 0.3);
+    }
+    .btn-telegram:hover { background: #1b89be; }
+  </style>
+</head>
+<body>
+
+  <div class="section-container">
+    
+    <a href="index.html" class="back-btn">→ العودة إلى الأقسام الرئيسية</a>
+
+    <div class="category-header">
+      <h1 class="category-title">قسم الهدايا والإهداءات 🎁</h1>
+      <p class="category-subtitle">اختر هديتك وخصص تفاصيلها بلمساتك الخاصة</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- المنتج 1: كوب الإهداء الفاخر -->
+      <div class="product-card">
+        <div class="image-container">
+          <img src="https://i.ibb.co/hxPRfNf0/cup.jpg" alt="كوب الإهداء الفاخر">
+          <span class="badge-quality">طباعة حرارية فاخرة</span>
+          <span class="badge-pickup">🏪 استلام من المحل</span>
+        </div>
+
+        <div class="content">
+          <h3 class="title">كوب الإهداء الفاخر 🎁</h3>
+          <p class="description">الهدية المثالية لتخليد أجمل اللحظات؛ طباعة حرارية ثابتة وفائقة الدقة بألوان زاهية مقاومة للحرارة والاستخدام اليومي.</p>
+
+          <div class="features-list">
+            <div class="feature-item">
+              <span>📸</span> إمكانية دمج حتى <strong>3 صور</strong> بدقة عالية
+            </div>
+            <div class="feature-item">
+              <span>✍️</span> كتابة أي اسم أو تاريخ أو عبارة وإهداء خاص
+            </div>
+          </div>
+
+          <div class="pickup-bar">
+            <div class="pickup-icon">🏪</div>
+            <div class="pickup-text">
+              <strong>الاستلام من الاستوديو</strong>
+              طلبك جاهز للاستلام المباشر من المحل في اليوم التالي
+            </div>
+          </div>
+
+          <div class="options-title">اختر نوع الكوب المطلوب:</div>
+          <div class="options-grid-2">
+            <div class="option-card active" onclick="selectCupOption(this, 'العادي', '500 SYP')">
+              <div class="option-name">كوب كلاسيك</div>
+              <div class="option-price">500 <small>SYP</small></div>
+              <div class="option-sub">أبيض لامع</div>
+            </div>
+
+            <div class="option-card" onclick="selectCupOption(this, 'السحري', '750 SYP')">
+              <div class="option-name">كوب سحري</div>
+              <div class="option-price">750 <small>SYP</small></div>
+              <div class="option-sub">يكشف مع الحرارة</div>
+            </div>
+          </div>
+
+          <div class="buttons-group">
+            <a id="cupWhatsappBtn" href="https://wa.me/963959233949?text=مرحباً، أود طلب كوب الإهداء الفاخر (العادي) بسعر 500 SYP، وسأرسل الصور والعبارة المطلوبة" target="_blank" class="order-btn btn-whatsapp">
+              <span>طلب عبر واتساب 💬</span>
+            </a>
+            <a href="https://t.me/nNsXErdfCI" target="_blank" class="order-btn btn-telegram">
+              <span>طلب عبر تيليجرام ✈️</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- المنتج 2: كنزة الإهداء المخصصة -->
+      <div class="product-card">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80" alt="كنزة مخصصة بالطباعة">
+          <span class="badge-quality">طباعة أقمشة فائقة الثبات</span>
+          <span class="badge-pickup">🏪 استلام من المحل</span>
+        </div>
+
+        <div class="content">
+          <h3 class="title">كنزة الإهداء المخصصة 👕</h3>
+          <p class="description">كنزة قطنية مريحة متوفرة بجميع الألوان، مع طباعة رقمية ناعمة وعالية الوضوح بتصميمك الخاص تدوم مع الغسيل المتكرر.</p>
+
+          <div class="features-list">
+            <div class="feature-item">
+              <span>🎨</span> متوفرة <strong>بجميع الألوان</strong> وخامات قطنية راقية
+            </div>
+            <div class="feature-item">
+              <span>🖼️</span> طباعة أي صورة شخصية أو شعار أو كتابة حسب اختيارك
+            </div>
+          </div>
+
+          <div class="pickup-bar">
+            <div class="pickup-icon">🏪</div>
+            <div class="pickup-text">
+              <strong>الاستلام من الاستوديو</strong>
+              طلبك جاهز للاستلام المباشر من المحل في اليوم التالي
+            </div>
+          </div>
+
+          <div class="options-title">اختر موضع الطباعة المطلوب:</div>
+          <div class="options-grid-3">
+            <div class="option-card active" onclick="selectShirtOption(this, 'وجه أمامي فقط')">
+              <div class="option-name">من الأمام</div>
+              <div class="option-sub">طبعة أمامية</div>
+            </div>
+
+            <div class="option-card" onclick="selectShirtOption(this, 'وجه خلفي فقط')">
+              <div class="option-name">من الخلف</div>
+              <div class="option-sub">طبعة خلفية</div>
+            </div>
+
+            <div class="option-card" onclick="selectShirtOption(this, 'الوجهين معاً')">
+              <div class="option-name">الوجهين</div>
+              <div class="option-sub">أمام وخلف</div>
+            </div>
+          </div>
+
+          <div class="buttons-group">
+            <a id="shirtWhatsappBtn" href="https://wa.me/963959233949?text=مرحباً، أود الاستفسار وطلب كنزة مخصصة (طباعة: وجه أمامي فقط)، لتحديد اللون والمقاس والصورة" target="_blank" class="order-btn btn-whatsapp">
+              <span>طلب عبر واتساب 💬</span>
+            </a>
+            <a href="https://t.me/nNsXErdfCI" target="_blank" class="order-btn btn-telegram">
+              <span>طلب عبر تيليجرام ✈️</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- المنتج 3: كفر الموبايل المخصص -->
+      <div class="product-card">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&auto=format&fit=crop&q=80" alt="كفر موبايل مخصص بالطباعة">
+          <span class="badge-quality">طباعة مقاومة للخدش</span>
+          <span class="badge-pickup">🏪 استلام من المحل</span>
+        </div>
+
+        <div class="content">
+          <h3 class="title">كفر الموبايل المخصص 📱</h3>
+          <p class="description">اجعل هاتفك يعكس شخصيتك بصورة أو تصميم مميز؛ طباعة حرارية فائقة الدقة وثابتة ومقاومة للخدوش والاستخدام اليومي.</p>
+
+          <div class="features-list">
+            <div class="feature-item">
+              <span>📲</span> متوفر لمعظم <strong>موديلات الهواتف</strong> الحديثة
+            </div>
+            <div class="feature-item">
+              <span>✨</span> إمكانية إحضار كفرك الخاص أو تأمينه بالكامل من المحل
+            </div>
+          </div>
+
+          <div class="pickup-bar">
+            <div class="pickup-icon">🏪</div>
+            <div class="pickup-text">
+              <strong>الاستلام من الاستوديو</strong>
+              طلبك جاهز للاستلام المباشر من المحل في اليوم التالي
+            </div>
+          </div>
+
+          <div class="options-title">اختر خيار الكفر والطباعة:</div>
+          <div class="options-grid-2">
+            <div class="option-card active" onclick="selectCaseOption(this, 'الكفر من المحل شامل الطباعة', '400 SYP')">
+              <div class="option-name">كفر من عندنا</div>
+              <div class="option-price">400 <small>SYP</small></div>
+              <div class="option-sub">شامل الكفر والطباعة</div>
+            </div>
+
+            <div class="option-card" onclick="selectCaseOption(this, 'كفر من عند الزبون (طباعة فقط)', '250 SYP')">
+              <div class="option-name">كفر من عندك</div>
+              <div class="option-price">250 <small>SYP</small></div>
+              <div class="option-sub">خدمة الطباعة فقط</div>
+            </div>
+          </div>
+
+          <div class="buttons-group">
+            <a id="caseWhatsappBtn" href="https://wa.me/963959233949?text=مرحباً، أود طلب كفر موبايل مخصص (الكفر من المحل شامل الطباعة) بسعر 400 SYP، لتحديد نوع الجهاز وإرسال الصورة" target="_blank" class="order-btn btn-whatsapp">
+              <span>طلب عبر واتساب 💬</span>
+            </a>
+            <a href="https://t.me/nNsXErdfCI" target="_blank" class="order-btn btn-telegram">
+              <span>طلب عبر تيليجرام ✈️️</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- المنتج 4: طوق الإهداء بوجهين -->
+      <div class="product-card">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&auto=format&fit=crop&q=80" alt="طوق إهداء بطباعة وجهين">
+          <span class="badge-quality">طباعة وجهين ثابتة</span>
+          <span class="badge-pickup">🏪 استلام من المحل</span>
+        </div>
+
+        <div class="content">
+          <h3 class="title">طوق الإهداء بوجهين 📿</h3>
+          <p class="description">تعليقة إهداء راقية تتيح لك حفظ أجمل الذكريات؛ طباعة حرارية ثابتة على الوجهين لا تتأثر بالاستخدام اليومي.</p>
+
+          <div class="features-list">
+            <div class="feature-item">
+              <span>🔄</span> طباعة على <strong>الوجهين معاً</strong> (صورتين أو صورة وكتابة)
+            </div>
+            <div class="feature-item">
+              <span>✨</span> إمكانية اختيار <strong>طوق مربع أو دائري</strong>
+            </div>
+          </div>
+
+          <div class="pickup-bar">
+            <div class="pickup-icon">🏪</div>
+            <div class="pickup-text">
+              <strong>الاستلام من الاستوديو</strong>
+              طلبك جاهز للاستلام المباشر من المحل في اليوم التالي
+            </div>
+          </div>
+
+          <div class="options-title">الطلب والمواصفات:</div>
+          <div class="options-grid-1">
+            <div class="option-card active">
+              <div class="option-name">طوق إهداء بوجهين 📿</div>
+              <div class="option-sub">طباعة وجهين كاملة (متوفر دائري ⚪ أو مربع ⏹️)</div>
+            </div>
+          </div>
+
+          <div class="buttons-group">
+            <a href="https://wa.me/963959233949?text=مرحباً، أود طلب طوق الإهداء بوجهين (شامل طباعة الوجهين)، وسأرسل الشكل المطلوب (دائري أو مربع) والصور" target="_blank" class="order-btn btn-whatsapp">
+              <span>طلب عبر واتساب 💬</span>
+            </a>
+            <a href="https://t.me/nNsXErdfCI" target="_blank" class="order-btn btn-telegram">
+              <span>طلب عبر تيليجرام ✈️</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const studioPhone = "963959233949";
+
+    function selectCupOption(element, type, price) {
+      const parent = element.closest('.options-grid-2');
+      parent.querySelectorAll('.option-card').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
+      
+      const message = encodeURIComponent(`مرحباً، أود طلب كوب الإهداء الفاخر (${type}) بسعر ${price}، وسأرسل الصور والعبارة المطلوبة`);
+      document.getElementById('cupWhatsappBtn').href = `https://wa.me/${studioPhone}?text=${message}`;
+    }
+
+    function selectShirtOption(element, position) {
+      const parent = element.closest('.options-grid-3');
+      parent.querySelectorAll('.option-card').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
+      
+      const message = encodeURIComponent(`مرحباً، أود الاستفسار وطلب كنزة مخصصة (طباعة: ${position})، لتحديد اللون والمقاس والصورة`);
+      document.getElementById('shirtWhatsappBtn').href = `https://wa.me/${studioPhone}?text=${message}`;
+    }
+
+    function selectCaseOption(element, caseType, price) {
+      const parent = element.closest('.options-grid-2');
+      parent.querySelectorAll('.option-card').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
+      
+      const message = encodeURIComponent(`مرحباً، أود طلب كفر موبايل مخصص (${caseType}) بسعر ${price}، لتحديد نوع الجهاز وإرسال الصورة`);
+      document.getElementById('caseWhatsappBtn').href = `https://wa.me/${studioPhone}?text=${message}`;
+    }
+  </script>
+
+</body>
+</html>
